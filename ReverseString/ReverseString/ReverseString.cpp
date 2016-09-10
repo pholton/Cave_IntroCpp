@@ -60,6 +60,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::cout << text << std::endl;
 
 	// Bonus reverse with for loop, no pointers
+	// i needs to be initialized to sizeof(text) - 2 since we need to ignore the null terminator
+	// and we need to shift to a zero-indexed array
 	for (int i = sizeof(text) - 2, j = 0; i > j; i--, j++) {
 		char temp = text[i];
 		text[i] = text[j];
