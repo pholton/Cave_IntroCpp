@@ -8,14 +8,32 @@
 int _tmain(int argc, _TCHAR* argv[])
 {
 
-	char text[] = "Hello";
+	char text[] = "Hello World!";
 
 	int nChars = sizeof(text) - 1;
-
+	
 	// setup pointers to start and end of characters in text, excluding null terminator
 	char *pStart = text;
-	char *pEnd = text + nChars - 1;
+	char *pEnd = text + nChars - 1;  // -1 excludes null terminator
 	
+	// Reverse characters using pointers in a for loop\
+	// don't need initializer since pStart and pEnd are 
+	// initialized above
+	for (; pStart < pEnd; pStart++, pEnd--) {
+		// store the "start" character in the temporary variable
+		// *pStart dereferences the pointer
+		char temp = *pStart;
+		// assign "end" character to "start" character
+		*pStart = *pEnd;
+		// assign the character in temp (original "start") to "end" character
+		*pEnd = temp;
+	}
+	std::cout << text << std::endl;
+
+	// reset pointers to the start and end positions
+	pStart = text;
+	pEnd = text + nChars -  1;
+
 	// Reverse characters using pointers in a while loop
 	while (pStart < pEnd) {
 		// store the "start" character in a temporary variable
@@ -31,8 +49,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		pEnd--;
 	}
 	std::cout << text << std::endl;
-
+	
 	// Reverse characters using pointers in a for loop
+	// same as above except variables are reinitialized in the declaration
 	for (pStart = text, pEnd = text + nChars - 1; pStart < pEnd; pStart++, pEnd--) {
 		char temp = *pStart;
 		*pStart = *pEnd;
